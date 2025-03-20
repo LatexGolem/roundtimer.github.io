@@ -14,7 +14,7 @@ setInterval(updateTime, 1000);
 
 // Array of image sources for dynamic image
 const imageArray = [
-    'falloutfactions.png.',
+    'falloutfactions.png',
     'KillTeam_Banner-750x469.png',
 ];
 
