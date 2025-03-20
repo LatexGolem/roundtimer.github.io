@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.time-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.centered-image {
+    max-width: 100%;
+    max-height: 50vh; /* Ensure images don't take more than half of the viewport height */
+    height: auto;
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.time-display {
+    font-size: 10vw; /* Use viewport width units for responsive sizing */
+    margin-top: 20px; /* Ensure space between images and time */
+}
+
+.schedule {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+}
+
+.schedule-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.schedule-box h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.schedule-box:last-child {
+    margin-bottom: 0;
+}
+
+.price-of-war-table {
+    flex: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.price-of-war-table h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+textarea {
+    width: 100%;
+    flex: 1;
+    resize: none;
+    padding: 10px;
+    font-size: 1.8rem;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}

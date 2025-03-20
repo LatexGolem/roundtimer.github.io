@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time and Schedule</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="time-section">
+            <div class="image-container">
+                <img src="gh.png" alt="Image 1" class="centered-image">
+                <img src="admech.png" alt="Image 2" class="centered-image" id="dynamic-image">
+            </div>
+            <div class="time-display" id="time">
+                <!-- Time will be displayed here -->
+            </div>
+        </div>
+        <div class="schedule">
+            <div class="schedule-box">
+                <h2>Horus Heresy</h2>
+                <textarea id="schedule1" placeholder="Enter your schedule here..."></textarea>
+            </div>
+            <div class="price-of-war-table">
+                <h2>The Price of War</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Percentage of force in lost units</th>
+                            <th>VP earned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Less than 25%</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>25% or more, but less than 50%</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>50% or more, but less than 75%</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="schedule-box">
+                <h2>Adeptus Titanicus</h2>
+                <textarea id="schedule2" placeholder="Enter your schedule here..."></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
