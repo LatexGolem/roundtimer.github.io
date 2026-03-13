@@ -4,45 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Current Time and Schedule</title>
+    <title>Round Timer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
         <div class="time-section">
-            <div class="image-container">
-                <img src="gh.png" alt="Image 1" class="centered-image">
-                <img src="admech.png" alt="Image 2" class="centered-image" id="dynamic-image">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
+                <label for="event-select" style="font-weight:700;">System:</label>
+                <select id="event-select">
+                    <option value="horus">Horus Heresy</option>
+                    <option value="40k">Warhammer 40K</option>
+                    <option value="killteam">Kill Team</option>
+                </select>
             </div>
+
+            <!-- Dynamic image viewport (shows a random image for 30s) -->
+            <div class="dynamic-view" id="dynamic-view">
+                <div class="image-container">
+                    <img src="assets/common/gh.png" alt="Static" class="centered-image">
+                    <img src="assets/horus/admech.png" alt="Dynamic" class="centered-image" id="dynamic-image">
+                </div>
+            </div>
+
+            <!-- Sponsor / thank-you viewport (shown between images for 30s) -->
+            <div class="sponsor-container" id="sponsor-view" style="display:none;">
+                <h1 class="sponsor-heading">Thank you to our event partners and sponsors</h1>
+                <!-- Order: Bandua, Element, TAP -->
+                <img src="assets/common/bandua_logo.svg" alt="Bandua Games" class="sponsor-logo" id="sponsor-bandua">
+                <img src="assets/common/element-games-2-small.png" alt="Element Games" class="sponsor-logo" id="sponsor-element">
+                <img src="assets/common/TAP.avif" alt="TAP" class="sponsor-logo" id="sponsor-tap">
+            </div>
+
             <div class="time-display" id="time">
                 <!-- Time will be displayed here -->
             </div>
+
             <div class="flex-container">
-                <img src="insta.png" height="100" width="100"><span><h2> tag @goonhammertv @lvl1leicester<br>#goonhammeropen</h2></span>
+                <img src="assets/common/insta.png" height="100" width="100"><span><h2> tag @goonhammertv @lvl1leicester<br>#goonhammeropen in your stories</h2></span>
             </div>
         </div>
+
         <div class="schedule">
             <div class="schedule-box">
-                <h2>Horus Heresy</h2>
-                <textarea id="schedule1" placeholder="Saturday
-8:30 - 9:00 Registration
-9:10 - 9:15 Briefing
-9:15 - 13:15 Game 1
-13:15 - 14:00 Lunch and Best Miniature
-14:00 - 14:15 Briefing
-14:15 - 18:15~ Game 2
-
-Sunday
-09:00 - 09:15 Briefing
-09:15 - 12:15 Game 3
-12:15 - 13:00 Lunch and Best Army 
-13:00 - 13:15 Briefing
-13:15 - 17:15 Game 4
-17:30 Epilogue + Prizegiving"></textarea>
+                <h2 id="schedule-title">Schedule</h2>
+                <textarea id="scheduleArea" readonly></textarea>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 

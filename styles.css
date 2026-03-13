@@ -119,3 +119,54 @@ textarea {
     display: flex;
     align-items: center;
 }
+
+/* Sponsor / thank-you layout */
+.sponsor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+    width: 100%;
+    padding: 2vh 1rem;
+    box-sizing: border-box;
+}
+
+.sponsor-heading {
+    color: white;
+    font-size: 3.2vh;
+    margin: 0;
+    padding-bottom: 0.5vh;
+}
+
+.sponsor-logo {
+    max-height: 18vh; /* keep logos similar visual height */
+    max-width: 80%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Slight spacing tweak for smaller screens */
+@media (max-width: 600px) {
+    .sponsor-logo { max-height: 14vh; }
+    .sponsor-heading { font-size: 3.6vw; }
+}
+
+/* Generic hidden helper (used by JS toggles) */
+.hidden { display: none !important; }
+
+/* Ensure dynamic view images are centered and constrained like sponsor logos */
+.dynamic-view .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.dynamic-view .centered-image {
+    max-height: 50vh;
+    max-width: 90%;
+    object-fit: contain;
+}
