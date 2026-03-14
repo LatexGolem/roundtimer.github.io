@@ -75,7 +75,7 @@ Sunday
         title: 'Kill Team',
         scheduleFile: 'schedules/killteam.txt',
         images: [
-            'assets/killteam/KillTeam_Banner-750x469.png', 'assets/common/gh.png'
+            'assets/killteam/KillTeam_Banner-750x469.png'
         ],
         fallback: `09:00 to 09:20 - Registration
 09:20 to 09:30 - Briefing
