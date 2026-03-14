@@ -51,6 +51,32 @@ body {
     /* Ensure space between images and time */
 }
 
+/* Mission QR section shown only for Horus Heresy */
+.mission-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.mission-title {
+    margin: 0 0 0.75rem;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    color: #333;
+}
+
+.mission-qr {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
 .schedule {
     flex: 1;
     display: flex;

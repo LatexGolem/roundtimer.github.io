@@ -113,6 +113,17 @@ async function loadSchedule(eventKey) {
 
 // Change the dynamic image using the active event's image set
 
+// Show/hide the mission QR area depending on the selected event
+function updateMissionSection(eventKey) {
+    const missionEl = document.getElementById('mission-container');
+    if (!missionEl) return;
+    if (eventKey === 'horus') {
+        missionEl.classList.remove('hidden');
+    } else {
+        missionEl.classList.add('hidden');
+    }
+}
+
 // Pick and display a random image for the current event
 function setRandomImage() {
     const imageElement = document.getElementById('dynamic-image');
@@ -150,12 +161,14 @@ if (selectEl) {
         loadSchedule(currentEvent);
         // If we're currently showing images, immediately pick a new image
         if (currentView === 'image') setRandomImage();
+        updateMissionSection(currentEvent);
     });
 }
 
 // Initial load and start the alternating cycle (30s image, 30s sponsor)
 loadSchedule(currentEvent);
 setRandomImage();
+updateMissionSection(currentEvent);
 showView('image');
 
 setInterval(() => {
