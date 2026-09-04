@@ -11,24 +11,23 @@
 <body>
     <div class="container">
         <div class="time-section">
-            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
+            <div class="system-picker">
                 <label for="event-select" style="font-weight:700;">System:</label>
                 <select id="event-select">
                     <option value="horus">Horus Heresy</option>
                     <option value="40k">Warhammer 40K</option>
-                    <option value="killteam">Kill Team</option>
                 </select>
             </div>
 
-            <!-- Dynamic image viewport (shows a random image for 30s) -->
+            <!-- Dynamic image viewport (shows a random image for 60s) -->
             <div class="dynamic-view" id="dynamic-view">
                 <div class="image-container">
-                    <img src="assets/common/gh.png" alt="Static" class="centered-image">
+                    <img src="assets/common/ttb_logo_text_white.png" alt="Static" class="centered-image">
                     <img src="assets/horus/admech.png" alt="Dynamic" class="centered-image" id="dynamic-image">
                 </div>
             </div>
 
-            <!-- Sponsor / thank-you viewport (shown between images for 30s) -->
+            <!-- Sponsor / thank-you viewport (shown for 30s) -->
             <div class="sponsor-container" id="sponsor-view" style="display:none;">
                 <h1 class="sponsor-heading">Thank you to our event partners and sponsors</h1>
                 <!-- Order: Bandua, Element, TAP -->
@@ -39,12 +38,52 @@
                 
             </div>
 
+            <!-- Food catering viewport (shown for 60s) -->
+            <div class="food-container" id="food-view" style="display:none;">
+                <h1 class="food-heading">Food &amp; Catering &mdash; @srirachawargamer</h1>
+                <div class="food-content">
+                    <div class="food-menu">
+                        <h4 class="food-day-heading">Saturday</h4>
+                        <div class="menu-item">
+                            <h3>Herby Chicken Mayo &mdash; &pound;8.50</h3>
+                            <p>Roasted chicken, herb mayonnaise, shrettuce, Milners baguette</p>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Tuna Mayo &mdash; &pound;8.50</h3>
+                            <p>Tuna mayonnaise, cucumber &amp; red onions, shrettuce, Milners baguette</p>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Chickpea Hash (ve) &mdash; &pound;8.50</h3>
+                            <p>Spiced chickpea hash, garlic aioli (ve), cucumber &amp; red onion, shrettuce, Milners baguette</p>
+                        </div>
+
+                        <h4 class="food-day-heading">Sunday</h4>
+                        <div class="menu-item">
+                            <h3>Chicken Tikka &mdash; &pound;8.50</h3>
+                            <p>Chicken tikka, curried mayo, pickled red cabbage, Milners baguette</p>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Prawn Cocktail &mdash; &pound;8.50</h3>
+                            <p>Brown shrimp, Marie Rose, shrettuce, Milners baguette</p>
+                        </div>
+                        <div class="menu-item">
+                            <h3>Broccoli &amp; Smoked Cheddar &mdash; &pound;8.50</h3>
+                            <p>Roast broccoli &amp; peppers, smoked cheddar (ve available), garlic aioli (ve), shrettuce, Milners baguette</p>
+                        </div>
+                    </div>
+                    <div class="food-pay">
+                        <img src="assets/food/foodpay.jpeg" alt="Scan to pay for food" class="food-qr">
+                        <p class="food-pay-label">Scan to pay</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="time-display" id="time">
                 <!-- Time will be displayed here -->
             </div>
 
             <div class="flex-container">
-                <img src="assets/common/insta.png" height="100" width="100"><span><h2> tag @goonhammertv @lvl1leicester<br>#goonhammeropen in your stories</h2></span>
+                <img src="assets/common/insta.png" height="100" width="100"><span><h2> tag @tabletopbattlesapp @lvl1leicester in your stories</h2></span>
             </div>
         </div>
 
@@ -56,8 +95,8 @@
 
             <!-- Mission QR (only shown for Horus Heresy) -->
             <div class="mission-container hidden" id="mission-container">
-                <h2 class="mission-title">Mission</h2>
-                <img src="assets/missions/four.png" alt="Mission QR" class="mission-qr" id="mission-qr">
+                <h2 class="mission-title">Missions</h2>
+                <img src="assets/missions/sept2026heresymissions.png" alt="Mission QR" class="mission-qr" id="mission-qr">
             </div>
         </div>
     </div>

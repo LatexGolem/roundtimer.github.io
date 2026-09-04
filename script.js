@@ -28,19 +28,17 @@ const eventConfig = {
         // Fallback schedule string used when fetch() fails (for file:// or blocked requests)
         fallback: `Saturday
 08:30 - 09:00 Registration
-09:10 - 09:15 Briefing
-09:15 - 13:15 Game 1
-13:15 - 14:00 Lunch and Best Miniature
+09:00 - 13:15 Game 1 (Hard Dice Down 13:15)
+13:15 - 14:00 Lunch
 14:00 - 14:15 Briefing
-14:15 - 18:15 Game 2
+14:15 - 18:15 Game 2 (Hard Dice Down 18:15)
 
 Sunday
-09:00 - 09:15 Briefing
-09:15 - 12:15 Game 3
-12:15 - 13:00 Lunch and Best Army
-13:00 - 13:15 Briefing
-13:15 - 17:15 Game 4
-17:30 Epilogue + Prizegiving
+08:45 - 09:00 Registration
+09:00 - 12:15 Game 3 (Hard Dice Down 12:15)
+12:15 - 13:15 Lunch and Best Army Judging
+13:15 - 17:25 Game 4 (Hard Dice Down 17:25)
+17:30 Prizegiving
 `
     },
     '40k': {
@@ -57,36 +55,17 @@ Sunday
         ],
         fallback: `Saturday
 08:30-09:00 Registration and announcements
-09:00-12:00 Round 1
-12:00-13:00 Lunch and Best Single Mini
-13:00-16:00 Round 2
-16:30-19:30 Round 3
+09:00-12:00 Round 1 -
+12:00-13:00 Lunch and best single miniature judging
+13:00-16:00 Round 2 -
+16:30-19:30 Round 3 -
 
 Sunday
 08:30-09:00 Venue opens and announcements
-09:00-12:00 Round 4
-12:00-13:00 Lunch and Best Painted Army
-13:00-16:00 Round 5
-16:30-19:30 Round 6
-19:30-20:00 Prizegiving
-`
-    },
-    killteam: {
-        title: 'Kill Team',
-        scheduleFile: 'schedules/killteam.txt',
-        images: [
-            'assets/killteam/KillTeam_Banner-750x469.png'
-        ],
-        fallback: `09:00 to 09:20 - Registration
-09:20 to 09:30 - Briefing
-09:30 to 11:30 - Round 1
-11:30 to 11:45 - Break
-11:45 to 13:45 - Round 2
-13:45 to 14:30 - Lunch
-14:30 to 16:30 - Round 3
-16:30 to 16:45 - Break
-16:45 to 18:45 - Round 4
-19:00 - Awards and Wrap-up
+09:00-12:00 Round 4 -
+12:00-13:00 Lunch and best army judging
+13:00-16:00 Round 5 -
+16:30-17:00 Prizegiving
 `
     }
 };
@@ -135,21 +114,23 @@ function setRandomImage() {
     imageElement.src = arr[randomIndex];
 }
 
-// View toggling: alternate between image view and sponsor view every N ms
-const VIEW_TOGGLE_MS = 30000; // 30 seconds
-let currentView = 'image'; // 'image' or 'sponsor'
+// View toggling: cycle between image, sponsor, and food views, each with its own duration
+const VIEW_DURATIONS_MS = {
+    image: 60000,   // 60 seconds
+    sponsor: 30000, // 30 seconds
+    food: 60000     // 60 seconds
+};
+const VIEW_ORDER = ['image', 'sponsor', 'food'];
+let currentView = 'image';
 
 function showView(view) {
     const dynamicViewEl = document.getElementById('dynamic-view');
     const sponsorViewEl = document.getElementById('sponsor-view');
-    if (!dynamicViewEl || !sponsorViewEl) return;
-    if (view === 'image') {
-        dynamicViewEl.style.display = '';
-        sponsorViewEl.style.display = 'none';
-    } else {
-        dynamicViewEl.style.display = 'none';
-        sponsorViewEl.style.display = '';
-    }
+    const foodViewEl = document.getElementById('food-view');
+    if (!dynamicViewEl || !sponsorViewEl || !foodViewEl) return;
+    dynamicViewEl.style.display = view === 'image' ? '' : 'none';
+    sponsorViewEl.style.display = view === 'sponsor' ? '' : 'none';
+    foodViewEl.style.display = view === 'food' ? '' : 'none';
     currentView = view;
 }
 
@@ -165,19 +146,18 @@ if (selectEl) {
     });
 }
 
-// Initial load and start the alternating cycle (30s image, 30s sponsor)
+// Initial load and start the cycle (60s image, 30s sponsor, 60s food)
 loadSchedule(currentEvent);
 setRandomImage();
 updateMissionSection(currentEvent);
 showView('image');
 
-setInterval(() => {
-    if (currentView === 'image') {
-        // switch to sponsor page
-        showView('sponsor');
-    } else {
-        // switch back to image and pick a new random image
-        setRandomImage();
-        showView('image');
-    }
-}, VIEW_TOGGLE_MS);
+function scheduleNextView() {
+    setTimeout(() => {
+        const nextView = VIEW_ORDER[(VIEW_ORDER.indexOf(currentView) + 1) % VIEW_ORDER.length];
+        if (nextView === 'image') setRandomImage();
+        showView(nextView);
+        scheduleNextView();
+    }, VIEW_DURATIONS_MS[currentView]);
+}
+scheduleNextView();

@@ -21,11 +21,13 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: #282c34;
     color: white;
     text-align: center;
+    padding-top: 1rem;
+    box-sizing: border-box;
 }
 
 .image-container {
@@ -181,6 +183,94 @@ textarea {
     .sponsor-heading { font-size: 3.6vw; }
 }
 
+/* Food / catering layout */
+.food-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    gap: 2vh;
+    width: 100%;
+    padding: 2vh 1rem;
+    box-sizing: border-box;
+}
+
+.food-heading {
+    color: white;
+    font-size: 3vh;
+    margin: 0;
+    padding-bottom: 0.5vh;
+}
+
+.food-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.food-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    text-align: left;
+}
+
+.food-day-heading {
+    margin: 0.5vh 0 0;
+    font-size: 1.6vh;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8fd6ff;
+}
+
+.food-day-heading:first-child {
+    margin-top: 0;
+}
+
+.menu-item h3 {
+    margin: 0 0 0.15rem;
+    font-size: 1.8vh;
+    color: white;
+}
+
+.menu-item p {
+    margin: 0;
+    font-size: 1.4vh;
+    color: #cfcfcf;
+}
+
+.food-pay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.food-qr {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.food-pay-label {
+    margin: 0;
+    color: white;
+    font-size: 1.8vh;
+}
+
+@media (max-width: 600px) {
+    .food-heading { font-size: 3.6vw; }
+    .food-day-heading { font-size: 2.2vw; }
+    .menu-item h3 { font-size: 2.6vw; }
+    .menu-item p { font-size: 2.2vw; }
+}
+
 /* Generic hidden helper (used by JS toggles) */
 .hidden { display: none !important; }
 
@@ -196,4 +286,23 @@ textarea {
     max-height: 50vh;
     max-width: 90%;
     object-fit: contain;
+}
+
+.system-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+#event-select {
+    font-size: 1rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: #fff;
+    color: #1f1f1f;
 }
