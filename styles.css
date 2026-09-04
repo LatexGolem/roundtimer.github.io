@@ -133,12 +133,13 @@ td {
     text-align: left;
 }
 
-textarea {
+#scheduleArea {
     width: 100%;
-    flex: 1;
-    resize: none;
+    margin: auto 0;
     padding: 10px;
+    font-family: inherit;
     font-size: 1.8rem;
+    white-space: pre-wrap;
     border: 1px solid #ddd;
     box-sizing: border-box;
 }

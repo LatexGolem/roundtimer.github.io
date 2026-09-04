@@ -72,22 +72,47 @@ Sunday
 
 let currentEvent = 'horus';
 
+// Resolve which day's schedule to show: URL override (?day=saturday|sunday) takes
+// priority for testing/preview, otherwise real Sunday shows Sunday, everything else Saturday
+function getActiveDay() {
+    const params = new URLSearchParams(window.location.search);
+    const override = (params.get('day') || '').toLowerCase();
+    if (override === 'saturday' || override === 'sunday') {
+        return override === 'sunday' ? 'Sunday' : 'Saturday';
+    }
+    return new Date().getDay() === 0 ? 'Sunday' : 'Saturday';
+}
+
+// Pull just one day's block out of a two-day schedule blob, tolerant of heading case
+// (schedule files mix "Saturday"/"SATURDAY")
+function extractDaySchedule(fullText, dayName) {
+    const lines = fullText.split('\n');
+    const isHeading = (line, name) => line.trim().toLowerCase() === name.toLowerCase();
+    const startIdx = lines.findIndex(l => isHeading(l, dayName));
+    if (startIdx === -1) return fullText.trim();
+    let endIdx = lines.findIndex((l, i) => i > startIdx && (isHeading(l, 'Saturday') || isHeading(l, 'Sunday')));
+    if (endIdx === -1) endIdx = lines.length;
+    return lines.slice(startIdx, endIdx).join('\n').trim();
+}
+
 // Load schedule text from a barebones file and show it
 async function loadSchedule(eventKey) {
     const cfg = eventConfig[eventKey];
     const area = document.getElementById('scheduleArea');
     const titleEl = document.getElementById('schedule-title');
     if (!cfg || !area || !titleEl) return;
-    titleEl.textContent = cfg.title;
+    const activeDay = getActiveDay();
+    titleEl.textContent = `${cfg.title} — ${activeDay}`;
+    let fullText;
     try {
         const res = await fetch(cfg.scheduleFile, { cache: 'no-store' });
         if (!res.ok) throw new Error('Not found');
-        const text = await res.text();
-        area.value = text.trim();
+        fullText = await res.text();
     } catch (err) {
         // If fetch failed (commonly when opening via file://), use the built-in fallback text
-        area.value = cfg.fallback || ('Schedule file not found. Please ensure ' + cfg.scheduleFile + ' exists.');
+        fullText = cfg.fallback || ('Schedule file not found. Please ensure ' + cfg.scheduleFile + ' exists.');
     }
+    area.textContent = extractDaySchedule(fullText, activeDay);
 }
 
 // Change the dynamic image using the active event's image set
