@@ -117,15 +117,11 @@ async function loadSchedule(eventKey) {
 
 // Change the dynamic image using the active event's image set
 
-// Show/hide the mission QR area depending on the selected event
-function updateMissionSection(eventKey) {
-    const missionEl = document.getElementById('mission-container');
-    if (!missionEl) return;
-    if (eventKey === 'horus') {
-        missionEl.classList.remove('hidden');
-    } else {
-        missionEl.classList.add('hidden');
-    }
+// Show/hide elements (mission QR, Horus-only sponsor logos, etc.) depending on the selected event
+function updateHorusOnlyVisibility(eventKey) {
+    document.querySelectorAll('.horus-only').forEach(el => {
+        el.classList.toggle('hidden', eventKey !== 'horus');
+    });
 }
 
 // Pick and display a random image for the current event
@@ -167,14 +163,14 @@ if (selectEl) {
         loadSchedule(currentEvent);
         // If we're currently showing images, immediately pick a new image
         if (currentView === 'image') setRandomImage();
-        updateMissionSection(currentEvent);
+        updateHorusOnlyVisibility(currentEvent);
     });
 }
 
 // Initial load and start the cycle (60s image, 30s sponsor, 60s food)
 loadSchedule(currentEvent);
 setRandomImage();
-updateMissionSection(currentEvent);
+updateHorusOnlyVisibility(currentEvent);
 showView('image');
 
 function scheduleNextView() {
